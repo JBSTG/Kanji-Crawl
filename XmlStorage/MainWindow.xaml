@@ -4,38 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XmlStorage"
+        xmlns:views="clr-namespace:XmlStorage.Views"
+        xmlns:viewmodels="clr-namespace:XmlStorage.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" WindowState="Maximized" WindowStyle="None">
+    <Window.DataContext>
+        <viewmodels:MenuViewModel/>
+    </Window.DataContext>
     <Grid>
-        <Label Name="label"></Label>
-        <Grid Name="MenuContainer">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Button Name="grade1Button" Grid.Column="2" Grid.Row="1" Click="LoadSet">Grade 1</Button>
-            <Button Name="grade2Button" Grid.Column="2" Grid.Row="2" Click="LoadSet">Grade 2</Button>
-            <Button Name="grade3Button" Grid.Column="2" Grid.Row="3" Click="LoadSet">Grade 3</Button>
-            <Button Name="grade4Button" Grid.Column="2" Grid.Row="4" Click="LoadSet">Grade 4</Button>
-            <Button Name="grade5Button" Grid.Column="2" Grid.Row="5" Click="LoadSet">Grade 5</Button>
-            <Button Name="grade6Button" Grid.Column="2" Grid.Row="6" Click="LoadSet">Grade 6</Button>
-            <Button Name="settingsButton" Grid.Column="2" Grid.Row="8" >Settings</Button>
-        </Grid>
-        <ContentControl Content="{Binding}"></ContentControl>
+        <views:MenuView/>
+        
     </Grid>
 </Window>

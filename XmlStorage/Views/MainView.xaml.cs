@@ -11,23 +11,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XmlStorage
+namespace XmlStorage.Views
 {
     /// <summary>
-    /// Interaction logic for KanjiCell.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class KanjiCell : UserControl
+    public partial class MainView : UserControl
     {
-        public KanjiCell()
+        public MainView()
         {
             InitializeComponent();
         }
-        public KanjiCell(string character)
-        {
-            InitializeComponent();
-            value.Text = character;
-        }
-
-
     }
 }

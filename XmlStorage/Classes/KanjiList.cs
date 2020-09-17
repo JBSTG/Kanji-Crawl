@@ -10,28 +10,64 @@ namespace XmlStorage.Classes
     {
         [XmlElement("character")]
         public string character { get; set; }
-        [XmlElement("meaning")]
-        public List<string> meanings { get; set; }
-        [XmlElement("kun")]
-        public List<string> kun { get; set; }
-        [XmlElement("on")]
-        public List<string> on { get; set; }
-        [XmlElement("correct")]
-        public int correct { get; set; }
 
-        [XmlElement("incorrect")]
-        public int incorrect { get; set; }
+
+        [XmlElement("meanings")]
+        public List<string> meanings { get; set; }
+
+
+        [XmlElement("kunReadings")]
+        public List<string> kunReadings { get; set; }
+
+
+        [XmlElement("onReadings")]
+        public List<string> onReadings { get; set; }
+
+
+        [XmlElement("nameReadings")]
+        public List<string> nameReadings { get; set; }
+
+        [XmlElement("grade")]
+        public int grade { get; set; }
+
+        [XmlElement("jlpt")]
+        public int jlpt { get; set; }
+
+        [XmlElement("strokeCount")]
+        public int strokeCount { get; set; }
+
+        [XmlElement("unicode")]
+        public string unicode { get; set; }
+
+        [XmlElement("heisigEnglish")]
+        public string heisigEnglish { get; set; }
 
         public Kanji()
         {
 
         }
-        public Kanji(string c, List<string> m, List<string> k, List<string> o)
+        public Kanji(
+            string c,
+            List<string> m,
+            List<string> k, 
+            List<string> o,
+            List<string> n,
+            int g,
+            int j,
+            int s,
+            string u,
+            string h)
         {
             character = c;
             meanings = m;
-            kun = k;
-            on = o;
+            kunReadings = k;
+            onReadings = o;
+            nameReadings = n;
+            grade = g;
+            jlpt = j;
+            strokeCount = s;
+            unicode = u;
+            heisigEnglish = h;
         }
     }
     [XmlRoot("kanjiList")]

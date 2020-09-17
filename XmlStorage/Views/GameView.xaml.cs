@@ -11,15 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XmlStorage
+namespace XmlStorage.Views
 {
     /// <summary>
-    /// Interaction logic for PlayerControl.xaml
+    /// Interaction logic for GameView.xaml
     /// </summary>
-    public partial class PlayerControl : UserControl
+    public partial class GameView : UserControl
     {
-
-        public PlayerControl()
+        public GameView()
         {
             InitializeComponent();
         }
