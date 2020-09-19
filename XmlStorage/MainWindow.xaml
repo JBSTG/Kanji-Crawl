@@ -13,6 +13,5 @@
     </Window.DataContext>
     <Grid>
         <views:MenuView/>
-        
     </Grid>
 </Window>

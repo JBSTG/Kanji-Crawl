@@ -9,6 +9,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json.Linq;
 using XmlStorage.Classes;
+using XmlStorage.Models;
 
 namespace XmlStorage.Utility
 {
@@ -20,7 +21,7 @@ namespace XmlStorage.Utility
         }
         public static void CreateDataFile(string dbname)
         {
-            File.Create(""+dbname+".db").Close();
+            File.Create("" + dbname + ".db").Close();
         }
 
         public static KanjiList GetKanjiListFromXML(string category)
@@ -31,6 +32,22 @@ namespace XmlStorage.Utility
             KanjiList list = (KanjiList)serializer.Deserialize(x);
             x.Close();
             return list;
+        }
+
+        public static KanjiListModel GetKanjiListModelFromXML(string category){
+            XmlReader x = XmlReader.Create("XML/" + category + ".xml");
+            XmlSerializer serializer = new XmlSerializer(typeof(KanjiListModel));
+            string text = File.ReadAllText("XML/" + category + ".xml");
+            KanjiListModel list = (KanjiListModel)serializer.Deserialize(x);
+            x.Close();
+            return list;
+        }
+        public static void UpdateKanjiListModelFile(KanjiListModel list, string category)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(KanjiListModel));
+            var file = System.IO.File.Create("XML/" + category + ".xml");
+            serializer.Serialize(file, list);
+            file.Close();
         }
         public static void UpdateKanjiFile(string category, KanjiList list)
         {

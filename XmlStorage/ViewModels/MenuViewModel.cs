@@ -9,6 +9,8 @@ using XmlStorage.Classes;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using XmlStorage.Models;
+using System.Xml.Serialization;
 
 namespace XmlStorage.ViewModels
 {
@@ -18,29 +20,15 @@ namespace XmlStorage.ViewModels
     //Create an object for each Kanji set
     public class MenuViewModel
     {
-
         public MenuViewModel()
         {
-
-            KanjiList k = FileUtility.GetKanjiListFromXML("grade-4");
             //Check to see if DB exists
             if (!FileUtility.DoesDataFileExist("Kanji"))
             {
-                //Create Database File
-                FileUtility.CreateDataFile("Kanji");
-                //Create Tables
-                DataAccess.AddTables("Kanji");
-                //Reset View
+                //DatabaseBuilder.BuildDatabase();
+                Debug.WriteLine("db needed");
             }
-            else
-            {
-                //DataAccess.ListTables("Kanji");
-                Debug.WriteLine("Good to Go!");
-                DataAccess.AddKanji("X",1);
-                DataAccess.AddMeanings("X",new List<string> { "One", "Two" });
-                DataAccess.CreateSet("grade-1","Kanji");
-                DataAccess.AddKanjiToGradeSet(1);
-            }
+            //DatabaseBuilder.ListAllKanji("Kanji");
         }
     }
 }
