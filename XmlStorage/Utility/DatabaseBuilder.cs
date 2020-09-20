@@ -264,7 +264,6 @@ namespace XmlStorage.Utility
             {
                 KanjiListModel list = FileUtility.GetKanjiListModelFromXML("grade-"+i);
 
-
                 //Set up grade 1 set
                 DatabaseBuilder.CreateSet("grade-" + i, "Kanji");
                 //Add those kanji to the database

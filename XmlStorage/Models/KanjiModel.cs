@@ -18,8 +18,19 @@ namespace XmlStorage.Models
         private string _Unicode;
         private int _JLPT;
         private int _StrokeCount;
+
         public KanjiModel()
         {
+            Meanings = new List<string>();
+        }
+        public KanjiModel(string c,int g, int s,int j,string u, string h)
+        {
+            Character = c;
+            Grade = g;
+            StrokeCount = s;
+            JLPT = j;
+            Unicode = u;
+            HeisigEnglish = h;
             Meanings = new List<string>();
         }
         [XmlElement("character")]
@@ -156,5 +167,6 @@ namespace XmlStorage.Models
                 NotifyPropertyChanged();
             }
         }
+
     }
 }

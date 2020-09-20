@@ -9,9 +9,9 @@
         mc:Ignorable="d"
         Title="MainWindow" WindowState="Maximized" WindowStyle="None">
     <Window.DataContext>
-        <viewmodels:MenuViewModel/>
+        <viewmodels:MainViewModel/>
     </Window.DataContext>
     <Grid>
-        <views:MenuView/>
+        <ContentControl Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>
