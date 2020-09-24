@@ -6,11 +6,15 @@
              xmlns:vm="clr-namespace:XmlStorage.ViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
         <DataTemplate DataType="{x:Type vm:MenuViewModel}">
             <views:MenuView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:GameViewModel}">
             <views:GameView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+            <views:SettingsView/>
         </DataTemplate>
     </Application.Resources>
 </Application>

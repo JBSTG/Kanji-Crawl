@@ -7,15 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White">
-    <StackPanel>
-        <TextBlock Text="{Binding Test}"/>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <StackPanel Style="{StaticResource ThemedStackPanel}">
         <ItemsControl ItemsSource="{Binding SetNames}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding}" Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+                    <Button FontSize="30" Height="100" Width="300" Content="{Binding}" Style="{StaticResource ThemedControl}" Command="{Binding RelativeSource={RelativeSource FindAncestor, 
 AncestorType={x:Type Window}}, Path=DataContext.LoadGameCommand}" CommandParameter="{Binding}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <Button FontSize="30" Height="100" Width="300" Content="Settings" Style="{StaticResource ThemedControl}" Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+AncestorType={x:Type Window}}, Path=DataContext.LoadSettingsCommand}"/>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>

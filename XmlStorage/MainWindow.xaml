@@ -7,11 +7,23 @@
         xmlns:views="clr-namespace:XmlStorage.Views"
         xmlns:viewmodels="clr-namespace:XmlStorage.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" WindowState="Maximized" WindowStyle="None">
+        Title="MainWindow" WindowState="Maximized" WindowStyle="None"
+        Height="800" Width="1200">
+    <Window.InputBindings>
+        <KeyBinding Key="Up" Command="{Binding CurrentViewModel.ArrowCommand}" CommandParameter="UP"/>
+        <KeyBinding Key="Left" Command="{Binding CurrentViewModel.ArrowCommand}" CommandParameter="LEFT"/>
+        <KeyBinding Key="Right" Command="{Binding CurrentViewModel.ArrowCommand}" CommandParameter="RIGHT"/>
+        <KeyBinding Key="Down" Command="{Binding CurrentViewModel.ArrowCommand}" CommandParameter="DOWN"/>
+        <KeyBinding Key="Space" Command="{Binding CurrentViewModel.SpaceOrEnterCommand}"/>
+        <KeyBinding Key="Return" Command="{Binding CurrentViewModel.SpaceOrEnterCommand}"/>
+    </Window.InputBindings>
     <Window.DataContext>
         <viewmodels:MainViewModel/>
     </Window.DataContext>
-    <Grid>
-        <ContentControl Content="{Binding CurrentViewModel}"/>
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid HorizontalAlignment="Stretch">
+        <ContentControl Name="GameRoot" Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

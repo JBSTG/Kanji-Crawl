@@ -5,32 +5,79 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:XmlStorage.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             IsEnabled="True" Focusable="True"
+             FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}"
+             >
     <UserControl.Resources>
-        <DataTemplate x:Key="Row">
+        <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="Theme.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="Row">
             <StackPanel Orientation="Horizontal">
-                <Button Content="{Binding}" FontSize="40" Width="50" Height="50" Background="White" Foreground="Maroon" BorderThickness="0"/>
-            </StackPanel>
+                    <Button Content="{Binding}" Style="{StaticResource ResourceKey=ThemedGameButton}" FontSize="35"  >
+                    </Button>
+                </StackPanel>
         </DataTemplate>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel VerticalAlignment="Center" Width="1000">
-        <StackPanel  VerticalAlignment="Center" Width="950">
-            <TextBlock Text="{Binding SetName}"/>
-            <TextBlock Text="Meanings list: a, b, c"/>
-        </StackPanel>
-
-        <ItemsControl ItemsSource="{Binding Cells}" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource Row}">
-                    </ItemsControl>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-    </StackPanel>
+        <Grid Style="{StaticResource ThemedGrid}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="600"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" VerticalAlignment="Center" Width="950">
+                <Button Style="{StaticResource ResourceKey = ThemedControl}" Margin="0 0 0 10" HorizontalAlignment="Left" Content="Save And Quit"
+                Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+                AncestorType={x:Type Window}}, Path=DataContext.ReturnToMenuCommand}"
+                    CommandParameter="{Binding SetName}"/>
+                <TextBlock Style="{StaticResource ResourceKey=ThemedText}" Text="{Binding SetName}"/>
+                <TextBlock Style="{StaticResource ResourceKey=ThemedText}" Text="{Binding MeaningListDisplay}"/>
+            </StackPanel>
+            <ItemsControl x:Name="GameGrid"  Grid.Row="1" Focusable="True" IsEnabled="True" ItemsSource="{Binding Cells}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl  ItemsSource="{Binding}" ItemTemplate="{DynamicResource Row}">
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            <Grid Visibility="{Binding CorrectionScreenVisible,Converter={StaticResource BoolToVisibilityConverter}}" Background="White" Grid.Row="1" Panel.ZIndex="9999" Height="500" Width="500">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="3" BorderBrush="Red"/>
+                <Border Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="3" BorderBrush="DarkSlateBlue"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="Your Kanji" TextAlignment="Center" FontSize="30"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Text="{Binding SelectedCharacter}" Foreground="Red" TextAlignment="Center" FontSize="50" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" Text="Correct Kanji" TextAlignment="Center" FontSize="30"/>
+                <TextBlock Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Text="{Binding TargetCharacter.Character}" Foreground="DarkSlateBlue" TextAlignment="Center" FontSize="50" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="1" Text="(Space or Enter to continue)" Foreground="DarkSlateGray" TextAlignment="Center" FontSize="12" VerticalAlignment="Top"/>
+            </Grid>
+        </Grid>
 </UserControl>

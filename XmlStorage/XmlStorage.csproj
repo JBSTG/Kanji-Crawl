@@ -12,7 +12,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Main.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Main.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Kanji.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Main.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Main.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="XML\grade-6.xml">

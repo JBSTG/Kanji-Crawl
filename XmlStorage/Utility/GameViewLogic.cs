@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using XmlStorage.Models;
 
@@ -7,12 +9,12 @@ namespace XmlStorage.Utility
 {
     class GameViewLogic
     {
-        public static List<List<string>> ZeroOutGrid(int X,int Y)
+        public static ObservableCollection<ObservableCollection<string>> ZeroOutGrid(int X,int Y)
         {
-            List<List<string>> EmptyGrid = new List<List<string>>();
+            ObservableCollection<ObservableCollection<string>> EmptyGrid = new ObservableCollection<ObservableCollection<string>>();
             for (int i = 0;i< X; i++)
             {
-                EmptyGrid.Add(new List<string>());
+                EmptyGrid.Add(new ObservableCollection<string>());
                 for (int j = 0;j<Y;j++)
                 {
                     EmptyGrid[i].Add(String.Empty);
@@ -20,6 +22,21 @@ namespace XmlStorage.Utility
             }
             return EmptyGrid;
         }
+
+        public static string MeaningListToString(KanjiModel target)
+        {
+            string list = String.Empty;
+            for (int i = 0;i<target.Meanings.Count;i++)
+            {
+                list += target.Meanings[i];
+                if (i<target.Meanings.Count-1)
+                {
+                    list += ", ";
+                }
+            }
+            return list;
+        }
+
         public static KanjiListModel CreateKanjiShortList(KanjiListModel fullList,int numberSelected)
         {
             KanjiListModel shortList = new KanjiListModel();
@@ -38,15 +55,18 @@ namespace XmlStorage.Utility
             return target;
         }
 
-        public static void SetPlayer(List<List<string>> cellValues)
+        public static int[] SetPlayer(ObservableCollection<ObservableCollection<string>> cellValues)
         {
             int xLimit = cellValues.Count;
             int yLimit = cellValues[0].Count;
-
-            cellValues[xLimit / 2][yLimit / 2] = "👺";
+            int x = xLimit / 2;
+            int y = yLimit / 2;
+            int[] playerLocation = new int[] {x,y};
+            cellValues[x][y] = "👺";
+            return playerLocation;
         }
 
-        public static void DisperseKanji(List<List<string>> cellValues, KanjiListModel shortList)
+        public static void DisperseKanji(ObservableCollection<ObservableCollection<string>> cellValues, KanjiListModel shortList)
         {
             Random r = new Random();
             int xLimit = cellValues.Count;
